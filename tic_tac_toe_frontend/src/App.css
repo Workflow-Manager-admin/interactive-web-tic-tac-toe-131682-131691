@@ -8,7 +8,201 @@
   --border-color: #e9ecef;
   --button-bg: #007bff;
   --button-text: #ffffff;
+
+  /* Tic Tac Toe theme variables */
+  --primary: #314f6d;
+  --secondary: #5e1c1c;
+  --accent: #ffeb3b;
 }
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --text-primary: #ffffff;
+  --text-secondary: #61dafb;
+  --border-color: #404040;
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+  --primary: #617699;
+  --secondary: #9a5353;
+  --accent: #ffe664;
+}
+
+/* --- Tic Tac Toe App Custom Styles --- */
+.ttt-root {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.ttt-player-info {
+  margin-bottom: 1.6rem;
+  text-align: center;
+  user-select: none;
+}
+.ttt-title {
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+}
+.ttt-logo {
+  font-size: 1.6em;
+}
+.ttt-scoreboard {
+  display: flex;
+  gap: 0.6em;
+  font-size: 1.12rem;
+  margin-bottom: 0.25em;
+  align-items: center;
+  justify-content: center;
+}
+.ttt-divider {
+  color: var(--border-color);
+  font-weight: 600;
+}
+.ttt-score {
+  background-color: var(--bg-secondary);
+  border-radius: 0.7em;
+  min-width: 2.5em;
+  padding: 0.44em 1em;
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border: 2px solid transparent;
+  transition: border 0.2s, color 0.2s, background 0.2s;
+}
+.ttt-score.ttt-x {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.ttt-score.ttt-o {
+  color: var(--secondary);
+  border-color: var(--secondary);
+  background: rgba(94,28,28,0.08);
+}
+.ttt-active {
+  background-color: var(--accent);
+  color: var(--primary);
+  border-color: var(--accent);
+}
+.ttt-turn-indicator {
+  min-height: 1.6em;
+  margin-bottom: 0.7em;
+  font-size: 1.07em;
+  padding-top: 0.1em;
+}
+
+.ttt-board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 3.5rem);
+  grid-template-rows: repeat(3, 3.5rem);
+  gap: 0.24rem;
+  background: var(--border-color);
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(49,79,109,0.06);
+  padding: 0.18em;
+}
+@media (max-width: 480px) {
+  .ttt-board {
+    grid-template-columns: repeat(3, 2.4rem);
+    grid-template-rows: repeat(3, 2.4rem);
+    padding: 0.1em;
+  }
+  .ttt-title { font-size: 1.2rem;}
+}
+
+.ttt-square {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--bg-primary);
+  border: 2.1px solid var(--border-color);
+  font-size: 2rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--primary);
+  border-radius: 0.58rem;
+  cursor: pointer;
+  transition: background 0.2s, border 0.18s, color 0.18s;
+  outline: none;
+}
+.ttt-square.is-x {
+  color: var(--primary);
+  background: linear-gradient(105deg, var(--accent) 25%, #fffbe6 100%);
+  box-shadow: 0 2px 6px #ffeb3b15;
+}
+.ttt-square.is-o {
+  color: var(--secondary);
+  background: linear-gradient(105deg, #fff 60%, #fbeaea 100%);
+  box-shadow: 0 2px 6px #5e1c1c13;
+}
+.ttt-square:active {
+  filter: brightness(0.98);
+}
+.ttt-square.ttt-square-disabled,
+.ttt-square:disabled {
+  background: var(--bg-secondary);
+  color: #bdbdbd;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.ttt-board .ttt-square {
+  margin: 0;
+  padding: 0;
+}
+
+.ttt-controls {
+  margin-top: 1.6em;
+  display: flex;
+  justify-content: center;
+}
+
+.ttt-btn {
+  background-color: var(--accent);
+  color: var(--primary);
+  border: none;
+  padding: 0.67em 2em;
+  font-size: 1em;
+  border-radius: 0.8em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s, box-shadow 0.16s;
+  margin: 0 0.5em;
+  box-shadow: 0 2px 8px #41518a10;
+  outline: none;
+}
+.ttt-btn:active {
+  filter: brightness(0.97);
+}
+.ttt-btn.ttt-btn-restart {
+  background-color: var(--secondary);
+  color: #fffbea;
+}
+.ttt-btn.ttt-btn-restart:hover {
+  background-color: #842a2a;
+  color: var(--accent);
+}
+
 
 [data-theme="dark"] {
   /* Dark theme colors */
